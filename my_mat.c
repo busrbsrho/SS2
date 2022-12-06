@@ -1,31 +1,57 @@
 #include "my_mat.h"
-#define INF 99999;
+#include <stdio.h>
 
-int arr[10][10];
-
-void fwa()
+int min(int a, int b)
 {
-for(int k=0; k<10; k++)
-{
-    for(int i=0; i<10; i++)
+    if(a<b)
     {
-        for(int j=0; j<10; j++)
-        {
-            if(arr[i][j]>arr[i][k]+arr[i][j])
+        return a;
+    }
+    return b;
+}
+
+void domatA(int arr[SIZE][SIZE])
+{
+    for (int i = 0; i < 10; i++)
+    {
+        for (int j = 0; j < 10; j++)
+        {  
+           scanf("%d",&arr[i][j]);
+           
+           
+        }
+    
+        
+    }
+    for (int i = 0; i < 10; i++)
+    {
+        for (int j = 0; j < 10; j++)
+        {  
+            if(arr[i][j]==0&&i!=j)
             {
-                arr[i][j]=arr[i][k]+arr[i][j];
-                
+                arr[i][j]=INF;
+            }   
+           
+        }
+    
+        
+    }
+    for(int k=0; k<10; k++)
+    {
+        for(int i=0; i<10; i++)
+        {
+            for(int j=0; j<10; j++)
+            {
+               arr[i][j]=min(arr[i][j],arr[i][k]+arr[k][j]);
             }
         }
     }
 }
 
-}
-
-void getidx(int i, int j)
+void getidxB(int i, int j,int arr[SIZE][SIZE])
 {
-    fwa(arr);
-    if((arr[i][j]>0)&&(arr[i][j]<99999))
+    
+    if((arr[i][j]>0)&&(arr[i][j]<INF))
 {
     printf("True\n");
 }
@@ -36,35 +62,16 @@ else
 
 }
 
-void domat()
-{
-    for (int i = 0; i < 10; i++)
-    {
-        for (int j = 0; j < 10; j++)
-        {  int a;
-           sacnf("%d",a);
-           if((i!=j)&&(a==0))
-           {
-            arr[i][j]=INF;
-           }
-            else
-            {
-            arr[i][j]=a; 
-            }
-
-           
-        }
-        
-    }
-
-    
-    
-    
-}
-void shortest(int i, int j)
+void shortestC(int i, int j,int arr[SIZE][SIZE])
     { 
-        fwa(arr);
         int k;
         k=arr[i][j];
-        printf("%d",k);
+        
+        if(k==INF || k==0)
+        {
+            printf("%d\n",-1);
+        }
+        else{
+            printf("%d\n",k);
+        }
     }
