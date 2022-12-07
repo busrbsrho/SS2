@@ -1,27 +1,24 @@
-CC = gcc
-FLAG = -Wall -g
-all:connections
+CC=gcc
+FLAGS=-Wall -g
 
-connections:main.o libclassmay_mat.a
-	$(CC) $(FLAG) -o connections main.o libclassmay_mat.a
 
-libclassmay_mat.a:my_mat.o
-	ar -rcs libclassmay_mat.a my_mat.o
-main.o:main.c my_mat.h
-	$(CC) $(FLAG) -c main.c
+all: connections
 
-my_mat.o:my_mat.c my_mat.h
-	$(CC) $(FLAG) -c my_mat.c
+connections : main.o libmy_mat.a
+	$(CC) $(FLAGS) -o connections main.o libmy_mat.a 
 
+main.o: main.c my_mat.h
+	$(CC) $(FLAGS) -c main.c 
+
+my_mat.o: my_mat.c my_mat.h
+	$(CC) $(FLAGS) -c my_mat.c 
+
+libmy_mat.a: my_mat.o
+	ar -rcs libmy_mat.a my_mat.o 
 
 .PHONY:clean all
- clean:
+clean: 
 	rm -f *.o *.a connections
-
-
-
-
-
 
 
 
